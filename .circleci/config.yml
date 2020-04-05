@@ -1,0 +1,6 @@
+jobs:
+  format:
+    steps:
+      - run:
+          name: terraform fmt
+          command: terraform fmt
