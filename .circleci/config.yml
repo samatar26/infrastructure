@@ -1,6 +1,6 @@
 jobs:
-  build:
-    docker:
+  format:
+    build:
       - image: hashicorp/terraform
     steps:
       - checkout
@@ -9,3 +9,19 @@ jobs:
           command: |
             terraform init
             terraform fmt
+   plan:
+    docker:
+      - image: hashicorp/terraform
+      steps:
+      - checkout
+      - run:
+        name: terraform plan
+        command: |
+          terraform plan
+
+
+workflows:
+  build_plan:
+    jobs:
+      - build
+      - plan
