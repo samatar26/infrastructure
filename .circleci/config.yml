@@ -5,4 +5,6 @@ jobs:
     steps:
       - run:
           name: terraform fmt
-          command: terraform fmt
+          command: |
+            terraform init
+            terraform fmt
