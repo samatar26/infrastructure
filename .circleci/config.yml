@@ -1,5 +1,7 @@
 jobs:
-  format:
+  build:
+    docker:
+      - image: hashicorp/terraform
     steps:
       - run:
           name: terraform fmt
