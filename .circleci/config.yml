@@ -1,6 +1,6 @@
 jobs:
-  format:
-    build:
+  build:
+    docker:
       - image: hashicorp/terraform
     steps:
       - checkout
