@@ -20,6 +20,7 @@ jobs:
           terraform plan
 
 workflows:
+  version: 2
   build_plan:
     jobs:
       - build
