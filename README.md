@@ -21,3 +21,16 @@ Checkout is used to checkout the project's source code into the job's working di
 For more detail look into the checkout step of the job, it looks like a bash script which clones the repo and checks out the corresponding branch/commit.
 
 When you don't specify a workflow, circleci will only look for a job called build which will be the default entry point for a run triggered by a push. You can specify additional jobs and run them using the CircleCI api.
+
+When using workflows, you can specify an order of jobs by using requires:
+
+```yml
+workflows:
+  version: 2
+  build_plan:
+    jobs:
+      - build
+      - plan:
+          requires:
+            - build
+```
