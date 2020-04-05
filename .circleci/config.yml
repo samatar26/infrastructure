@@ -4,9 +4,3 @@ jobs:
       - run:
           name: terraform fmt
           command: terraform fmt
-
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - format
