@@ -24,6 +24,6 @@ workflows:
   build_plan:
     jobs:
       - build
-      - plan
+      - plan:
           requires:
-             - build
+            - build
