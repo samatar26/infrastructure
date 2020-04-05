@@ -1,5 +1,5 @@
 jobs:
-  build:
+  plan:
     docker:
       - image: hashicorp/terraform
     steps:
