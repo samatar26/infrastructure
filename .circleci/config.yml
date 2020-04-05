@@ -3,6 +3,7 @@ jobs:
     docker:
       - image: hashicorp/terraform
     steps:
+      - checkout
       - run:
           name: terraform fmt
           command: |

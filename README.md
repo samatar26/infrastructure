@@ -14,3 +14,5 @@ Each run declaration represents a new shell. To specify a multi-line command, wh
       cd blah
       make blah
 ```
+
+Checkout is used to checkout the project's source code into the job's working directory.
