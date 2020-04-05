@@ -15,9 +15,9 @@ jobs:
     steps:
       - checkout
       - run:
-        name: terraform plan
-        command: |
-          terraform plan
+          name: terraform plan
+          command: |
+            terraform plan
 
 workflows:
   version: 2
