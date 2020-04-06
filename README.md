@@ -34,3 +34,20 @@ workflows:
           requires:
             - build
 ```
+
+## Terraform
+
+A backend in terraform is the representation of your state (terraform.tfstate). So it's a good idea to store your state file somewhere where it can persist.
+When using the `gcs` backend it's highly recommended to turn object versioning (support for retrieval of objects that are deleted/overwritten) on to allow for state recovery in case of accidental deletion/human error.
+
+Terraform has a list of supported backends here: https://www.terraform.io/docs/backends/types/index.html.
+
+You can configure your backend using the `terraform` section:
+
+```terraform
+terraform {
+  backend "backend_type" {
+
+  }
+}
+```
