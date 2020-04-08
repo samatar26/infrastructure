@@ -68,9 +68,11 @@ terraform {
 
 ## Google cloud platform
 
-You need to enable billing before you can create a bucket and probably much more. Even though I want do everything with terraform,
-it seems like even in the terraform docs for the google provider, that before you begin, you should create a project and add a billing account.
+You need to enable billing before you can create a bucket and probably much more. :sweat_smile:
 
-![roll_thafe](https://user-images.githubusercontent.com/22747985/78829532-699fc380-79de-11ea-96c0-ad7e709d88e0.jpg)
+![roll_thase](https://user-images.githubusercontent.com/22747985/78833336-9b1b8d80-79e4-11ea-9025-a44a2a6a558b.png)
+
+Even though I want do everything with terraform,
+it seems like even in the terraform docs for the google provider, that before you begin, you should create a project and add a billing account.
 
 When trying to create a bucket to store my terraform state file, I got a 409 error from googlapi. It looks like GCS bucket names are globablly unique and they are publicly visible. See naming best practices: https://cloud.google.com/storage/docs/best-practices#naming. Luckily my name is pretty unique :smile:.
