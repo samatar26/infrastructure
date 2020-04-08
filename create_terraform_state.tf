@@ -1,5 +1,5 @@
 provider "google" {
-  project = "proud-apogee-261010"
+  project = "fluent-crossbar-261008"
 }
 
 resource "google_storage_bucket" "terraform_state" {
