@@ -1,0 +1,33 @@
+jobs:
+  plan:
+    docker:
+      - image: hashicorp/terraform
+    steps:
+      - checkout
+      - run:
+          name: terraform fmt
+          command: |
+            terraform init
+            terraform fmt
+      - run:
+          name: terraform plan
+          command: |
+            terraform plan
+  apply:
+    docker:
+      - image: hashicorp/terraform
+    steps:
+      - checkout
+      - run:
+          name: terraform apply
+          command: terraform apply
+
+workflows:
+  version: 2
+  build_plan:
+    jobs:
+      - plan
+      - apply:
+          type: approval
+          requires:
+            - plan
