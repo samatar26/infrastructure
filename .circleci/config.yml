@@ -20,7 +20,8 @@ jobs:
       - checkout
       - run:
           name: terraform apply
-          command: terraform apply
+          command: |
+            terraform apply
 
 workflows:
   version: 2
