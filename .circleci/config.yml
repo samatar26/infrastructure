@@ -29,4 +29,5 @@ workflows:
       - plan
       - apply:
           type: approval
-          requires: plan
+          requires:
+            - plan
