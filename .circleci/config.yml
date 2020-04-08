@@ -22,6 +22,7 @@ jobs:
           name: terraform apply
           command: |
             terraform init
+            terraform plan
             terraform apply
 # TODO: Remove init step^^
 
