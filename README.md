@@ -22,7 +22,7 @@ For more detail look into the checkout step of the job, it looks like a bash scr
 
 When you don't specify a workflow, circleci will only look for a job called build which will be the default entry point for a run triggered by a push. You can specify additional jobs and run them using the CircleCI api.
 
-When using workflows, you can specify an order of jobs by using requires:
+When using workflows, you can specify an order of jobs (| -> | -> |) by using requires:
 
 ```yml
 workflows:
@@ -31,6 +31,20 @@ workflows:
     jobs:
       - build
       - plan:
+          requires:
+            - build
+```
+
+If a job requires manual approval from a developer you can add a type of of approval to the job in the workflow:
+
+```yml
+workflows:
+  version: 2
+  build_plan:
+    jobs:
+      - build
+      - plan:
+          type: approval
           requires:
             - build
 ```
