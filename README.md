@@ -35,19 +35,28 @@ workflows:
             - build
 ```
 
-If a job requires manual approval from a developer you can add a type of of approval to the job in the workflow:
+If a job requires manual approval from a developer you can add a type of of approval to a purely review job in the workflow. Because the approval type job doesn't actually correspond to the jobs specified in the jobs section:
 
 ```yml
 workflows:
   version: 2
   build_plan:
     jobs:
-      - build
-      - plan:
+      - plan
+      - review_plan:
           type: approval
           requires:
             - build
+      - apply:
+          requires:
+            - build
 ```
+
+`persist_to_workspace` is handy for persisting a temporary file(s) to be used by another job in the workflow.
+
+It's used in conjuction with `attach_workspace` in the required job.
+
+Note - You probably want to persist after you run your (build) commands and generate the files you need in your subsequent job!
 
 ## Terraform
 
@@ -66,11 +75,27 @@ terraform {
 }
 ```
 
+#### Terraform init
+
+Terraform init is used to initialize a working directory containing `.tf` files.
+It's the first command you should run after writing a new Terraform configuration or cloning one. It's also safe to run multiple times.
+
+During init, the root configuation directory is consulted for backed configuration and the chosen backend is initialized.
+
+#### Terraform plan
+
+Terraform plan is used to create an execution plan (to update the current state based on the changes in your configuration).
+It's also really nice to see whether the changes you're about to make match you expectations without making any changes to real resources or to the state.
+
+The `-out` argument can be used to save the generated plan for later execution, super useful in automation (i.e. circleci) as I guess you'd want to separate your plan and apply step.
+
 ## Google cloud platform
 
-You need to enable billing before you can create a bucket and probably much more. Even though I want do everything with terraform,
-it seems like even in the terraform docs for the google provider, that before you begin, you should create a project and add a billing account.
+You need to enable billing before you can create a bucket and probably much more. :sweat_smile:
 
-![roll_thafe](https://user-images.githubusercontent.com/22747985/78829532-699fc380-79de-11ea-96c0-ad7e709d88e0.jpg)
+![roll_thase](https://user-images.githubusercontent.com/22747985/78833336-9b1b8d80-79e4-11ea-9025-a44a2a6a558b.png)
+
+Even though I want do everything with terraform,
+it seems like even in the terraform docs for the google provider, that before you begin, you should create a project and add a billing account.
 
 When trying to create a bucket to store my terraform state file, I got a 409 error from googlapi. It looks like GCS bucket names are globablly unique and they are publicly visible. See naming best practices: https://cloud.google.com/storage/docs/best-practices#naming. Luckily my name is pretty unique :smile:.
