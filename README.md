@@ -49,6 +49,8 @@ workflows:
             - build
 ```
 
+`persist_to_workspace` is handy for persisting a temporary file(s) to be used by another job in the workflow.
+
 ## Terraform
 
 A backend in terraform is the representation of your state (terraform.tfstate). So it's a good idea to store your state file somewhere where it can persist, so that your state doesn't get created from scratch every time you run your ci/cd pipeline!
@@ -65,6 +67,20 @@ terraform {
   }
 }
 ```
+
+#### Terraform init
+
+Terraform init is used to initialize a working directory containing `.tf` files.
+It's the first command you should run after writing a new Terraform configuration or cloning one. It's also safe to run multiple times.
+
+During init, the root configuation directory is consulted for backed configuration and the chosen backend is initialized.
+
+#### Terraform plan
+
+Terraform plan is used to create an execution plan (to update the current state based on the changes in your configuration).
+It's also really nice to see whether the changes you're about to make match you expectations without making any changes to real resources or to the state.
+
+The `-out` argument can be used to save the generated plan for later execution, super useful in automation (i.e. circleci) as I guess you'd want to separate your plan and apply step.
 
 ## Google cloud platform
 
