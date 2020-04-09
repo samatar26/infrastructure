@@ -16,8 +16,7 @@ jobs:
       - persist_to_workspace:
           root: ~/project
           paths:
-            - ./terraform
-            - plan
+            - ./
   apply:
     docker:
       - image: hashicorp/terraform
