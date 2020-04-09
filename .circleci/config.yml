@@ -23,7 +23,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-        at: ./
+          at: ./
       - run:
           name: terraform apply
           command: terraform apply -auto-approve
