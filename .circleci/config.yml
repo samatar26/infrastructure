@@ -5,9 +5,9 @@ jobs:
     steps:
       - checkout
       - persist_to_workspace:
-        root: ~/project
-        paths:
-          - ./
+          root: ~/project
+          paths:
+            - ./
       - run:
           name: terraform fmt
           command: |
