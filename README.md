@@ -35,16 +35,19 @@ workflows:
             - build
 ```
 
-If a job requires manual approval from a developer you can add a type of of approval to the job in the workflow:
+If a job requires manual approval from a developer you can add a type of of approval to a purely review job in the workflow. Because the approval type job doesn't actually correspond to the jobs specified in the jobs section:
 
 ```yml
 workflows:
   version: 2
   build_plan:
     jobs:
-      - build
-      - plan:
+      - plan
+      - review_plan:
           type: approval
+          requires:
+            - build
+      - apply:
           requires:
             - build
 ```

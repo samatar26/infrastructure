@@ -33,7 +33,10 @@ workflows:
   build_plan:
     jobs:
       - plan
-      - apply:
-          type: approval
+      - review_plan:
           requires:
             - plan
+          type: approval
+      - apply:
+          requires:
+            - review_plan
