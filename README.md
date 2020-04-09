@@ -51,6 +51,8 @@ workflows:
 
 `persist_to_workspace` is handy for persisting a temporary file(s) to be used by another job in the workflow.
 
+It's used in conjuction with `attach_workspace` in the required job.
+
 ## Terraform
 
 A backend in terraform is the representation of your state (terraform.tfstate). So it's a good idea to store your state file somewhere where it can persist, so that your state doesn't get created from scratch every time you run your ci/cd pipeline!
