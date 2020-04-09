@@ -1,5 +1,5 @@
 terraform {
   backend "gcs" {
-    bucket = "samatar-terraform-state"
+    bucket = "samatar-tf-state"
   }
 }
