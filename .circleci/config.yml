@@ -4,10 +4,6 @@ jobs:
       - image: hashicorp/terraform
     steps:
       - checkout
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - ./
       - run:
           name: terraform fmt
           command: |
@@ -17,7 +13,10 @@ jobs:
       - run:
           name: terraform plan
           command: terraform plan -out plan
-
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - ./
   apply:
     docker:
       - image: hashicorp/terraform
@@ -27,7 +26,7 @@ jobs:
           at: ./
       - run:
           name: terraform apply
-          command: terraform apply -auto-approve
+          command: terraform apply
 
 workflows:
   version: 2

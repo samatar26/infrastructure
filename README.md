@@ -53,6 +53,8 @@ workflows:
 
 It's used in conjuction with `attach_workspace` in the required job.
 
+Note - You probably want to persist after you run your (build) commands and generate the files you need in your subsequent job!
+
 ## Terraform
 
 A backend in terraform is the representation of your state (terraform.tfstate). So it's a good idea to store your state file somewhere where it can persist, so that your state doesn't get created from scratch every time you run your ci/cd pipeline!
