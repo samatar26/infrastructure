@@ -34,7 +34,6 @@ workflows:
     jobs:
       - plan
       - apply:
-          type:
-            - approval
+          type: approval
           requires:
             - plan
