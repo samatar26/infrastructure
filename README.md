@@ -77,9 +77,17 @@ terraform {
 
 🥚 vs 🐔 problem - How to create the infrastructure for the remote Terraform backend with Terraform?
 
-First you initialize terraform and apply thereby creating the required resources,
-which is the bucket and project but not the remote backend.
-Then you reinitialize terraform with the remote backend, which will prompt you to copy the existing state to the remote!
+First you run terraform init and plan with **only** the project and bucket creation.
+
+Then you reinitialize terraform with the remote backend, which will prompt you to copy the existing state to the remote and voila you have the current state containing project an all in your gcs bucket!
+
+Once you've done this, it's probably best to create a service account specifically for terraform, see `(iam.tf)`. I've given it a role of owner for now, but will have to look into whether it can have more granular permissions. In order to retrieve the account's authorisation keys, you can run:
+
+```bash
+gcloud iam service-accounts keys create [file-name].json --iam-account [service-account-email]
+```
+
+You can then save the contents of the credentials.json in any automation pipeline!
 
 ### Common Terraform commands:
 
