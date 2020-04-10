@@ -7,7 +7,6 @@ jobs:
       - run:
           name: terraform fmt
           command: |
-            ls
             terraform init
             terraform fmt
       - run:
