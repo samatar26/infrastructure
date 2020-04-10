@@ -89,7 +89,13 @@ gcloud iam service-accounts keys create [file-name].json --iam-account [service-
 
 You can then save the contents of the credentials.json in any automation pipeline!
 
-Note - There's a list of canonical apis that should be turned on, i.e. cloudresourcemanager.googleapis.com
+Note - There's a list of canonical apis that should be turned on for the project. It looks like all the services are turned off by default once you create a project through terraform. The essential ones are:
+
+- cloudresourcemanager.googleapis.com
+- cloudbilling.googleapis.com
+- iam.googleapis.com
+
+If you forget to do this during the bootstrapping process, you can either enable the required API with gcloud, or create a new SA and enable the required APIs.
 
 ### Common Terraform commands:
 

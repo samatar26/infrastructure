@@ -19,6 +19,14 @@ resource "google_project" "samatar_dev" {
 resource "google_project_service" "s" {
   project = "${google_project.samatar_dev.project_id}"
 
-  service = "cloudresourcemanager.googleapis.com"
+  service = each.key
+
+  for_each = {
+    for i in [
+      "cloudresourcemanager.googleapis.com",
+      "cloudbilling.googleapis.com",
+      "iam.googleapis.com",
+    ] : i => i
+  }
 
 }
