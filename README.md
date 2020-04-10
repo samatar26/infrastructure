@@ -75,6 +75,12 @@ terraform {
 }
 ```
 
+🥚 vs 🐔 problem - How to create the infrastructure for the remote Terraform backend with Terraform?
+
+To be Solved
+
+### Common Terraform commands:
+
 #### Terraform init
 
 Terraform init is used to initialize a working directory containing `.tf` files.
