@@ -26,6 +26,7 @@ resource "google_project_service" "s" {
       "cloudresourcemanager.googleapis.com",
       "cloudbilling.googleapis.com",
       "iam.googleapis.com",
+      "serviceusage.googleapis.com"
     ] : i => i
   }
 
