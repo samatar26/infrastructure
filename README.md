@@ -75,6 +75,30 @@ terraform {
 }
 ```
 
+🥚 vs 🐔 problem - How to create the infrastructure for the remote Terraform backend with Terraform?
+
+First you run terraform init and plan with **only** the project and bucket creation.
+
+Then you reinitialize terraform with the remote backend, which will prompt you to copy the existing state to the remote and voila you have the current state containing project an all in your gcs bucket!
+
+Once you've done this, it's probably best to create a service account specifically for terraform, see `(iam.tf)`. I've given it a role of owner for now, but will have to look into whether it can have more granular permissions. In order to retrieve the account's authorisation keys, you can run:
+
+```bash
+gcloud iam service-accounts keys create [file-name].json --iam-account [service-account-email]
+```
+
+You can then save the contents of the credentials.json in any automation pipeline!
+
+Note - There's a list of canonical apis that should be turned on for the project. It looks like all the services are turned off by default once you create a project through terraform. The essential ones are:
+
+- cloudresourcemanager.googleapis.com
+- cloudbilling.googleapis.com
+- iam.googleapis.com
+
+If you forget to do this during the bootstrapping process, you can either enable the required API with gcloud, or create a new SA and enable the required APIs.
+
+### Common Terraform commands:
+
 #### Terraform init
 
 Terraform init is used to initialize a working directory containing `.tf` files.
@@ -99,3 +123,6 @@ Even though I want do everything with terraform,
 it seems like even in the terraform docs for the google provider, that before you begin, you should create a project and add a billing account.
 
 When trying to create a bucket to store my terraform state file, I got a 409 error from googlapi. It looks like GCS bucket names are globablly unique and they are publicly visible. See naming best practices: https://cloud.google.com/storage/docs/best-practices#naming. Luckily my name is pretty unique :smile:.
+
+Another thing about buckets is that even though the project field is optional, it will try and find the project_id from the provider.
+So it looks like it's best to set the project_id on that level as other resources may need it too.
