@@ -17,7 +17,7 @@ resource "google_project" "samatar_dev" {
 }
 
 resource "google_project_service" "s" {
-  project_id = "${google_project.samatar_dev.project_id}"
+  project = "${google_project.samatar_dev.project_id}"
 
   service = "cloudresourcemanager.googleapis.com"
 
