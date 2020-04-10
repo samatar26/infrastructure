@@ -89,6 +89,8 @@ gcloud iam service-accounts keys create [file-name].json --iam-account [service-
 
 You can then save the contents of the credentials.json in any automation pipeline!
 
+Note - There's a list of canonical apis that should be turned on, i.e. cloudresourcemanager.googleapis.com
+
 ### Common Terraform commands:
 
 #### Terraform init

@@ -15,3 +15,10 @@ resource "google_project" "samatar_dev" {
 
   billing_account = "${var.billing_account}"
 }
+
+resource "google_project_service" "s" {
+  project_id = "${google_project.samatar_dev.project_id}"
+
+  service = "cloudresourcemanager.googleapis.com"
+
+}
