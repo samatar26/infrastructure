@@ -77,7 +77,9 @@ terraform {
 
 🥚 vs 🐔 problem - How to create the infrastructure for the remote Terraform backend with Terraform?
 
-To be Solved
+First you initialize terraform and apply thereby creating the required resources,
+which is the bucket and project but not the remote backend.
+Then you reinitialize terraform with the remote backend, which will prompt you to copy the existing state to the remote!
 
 ### Common Terraform commands:
 
@@ -105,3 +107,6 @@ Even though I want do everything with terraform,
 it seems like even in the terraform docs for the google provider, that before you begin, you should create a project and add a billing account.
 
 When trying to create a bucket to store my terraform state file, I got a 409 error from googlapi. It looks like GCS bucket names are globablly unique and they are publicly visible. See naming best practices: https://cloud.google.com/storage/docs/best-practices#naming. Luckily my name is pretty unique :smile:.
+
+Another thing about buckets is that even though the project field is optional, it will try and find the project_id from the provider.
+So it looks like it's best to set the project_id on that level as other resources may need it too.
