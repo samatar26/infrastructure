@@ -9,3 +9,11 @@ resource "google_storage_bucket" "terraform_state" {
   }
 
 }
+
+resource "google_storage_bucket" "www_anime_samatar_dev" {
+  name = "www.anime.samatar.dev"
+
+  project = "${google_project.samatar_dev.project_id}"
+
+  location = "EU"
+}
