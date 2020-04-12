@@ -58,6 +58,11 @@ It's used in conjuction with `attach_workspace` in the required job.
 
 Note - You probably want to persist after you run your (build) commands and generate the files you need in your subsequent job!
 
+Note - When starting a new service/project you'd most likely want to push your container to GCR and in order to do this, it's probably wise to create a SA specifically for that purpose.
+The role `storage.objectViewer` seems to be sufficient.
+
+Question - Is it necessary to create an entire project for the container registry?
+
 ## Terraform
 
 A backend in terraform is the representation of your state (terraform.tfstate). So it's a good idea to store your state file somewhere where it can persist, so that your state doesn't get created from scratch every time you run your ci/cd pipeline!
