@@ -6,7 +6,7 @@ resource "google_service_account" "terraform" {
 
 resource "google_service_account" "circle_deploy" {
   project      = "${google_project.samatar_dev.project_id}"
-  account_id   = "circleci_deploy"
+  account_id   = "circleci-deploy"
   display_name = "CircleCI Deploy"
 }
 
