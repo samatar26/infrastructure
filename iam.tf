@@ -4,10 +4,10 @@ resource "google_service_account" "terraform" {
   display_name = "Terraform SA"
 }
 
-resource "google_service_account" "circle_deploy" {
+resource "google_service_account" "circleci_deploy" {
   project      = "${google_project.samatar_dev.project_id}"
   account_id   = "circleci-deploy"
-  display_name = "CircleCI Deploy"
+  display_name = "CircleCI Deploy SA"
 }
 
 resource "google_project_iam_member" "terraform_owner" {
@@ -17,7 +17,7 @@ resource "google_project_iam_member" "terraform_owner" {
 }
 
 
-resource "google_project_iam_member" "circleci_deploy" {
+resource "google_project_iam_member" "circleci_deploy_registry" {
   project = "${google_project.samatar_dev.project_id}"
   role    = "roles/storage.objectViewer"
   member  = "serviceAccount:${google_service_account.circleci_deploy.email}"
