@@ -136,5 +136,37 @@ So it looks like it's best to set the project_id on that level as other resource
 
 ### Google container registry
 
-For push permissions (read and write) you need a role of `storage.admin`.
-For pull permissions (read only) you need a role of `storage.objectViewer`.
+In order to push images to GCR, there's several steps required:
+
+- You need to enable the container registry api: `containerregistry.googleapis.com`
+- You need have permission to push and pull from the registry:
+  - For push permissions (read and write) you need a role of `storage.admin`.
+  - For pull permissions (read only) you need a role of `storage.objectViewer`.
+- Configure docker to use gcloud as a credential helper, this is as simple as running: `gcloud auth configure-docker`. This results in the following settings being added to your Docker config file:
+
+```json
+{
+  "credHelpers": {
+    "gcr.io": "gcloud",
+    "us.gcr.io": "gcloud",
+    "eu.gcr.io": "gcloud",
+    "asia.gcr.io": "gcloud",
+    "staging-k8s.gcr.io": "gcloud",
+    "marketplace.gcr.io": "gcloud"
+  }
+}
+```
+
+Which looks like it's saying if you push to X hostname, use the following tool/SDK.
+
+You will also have to tag the image with the registry name: `HOSTNAME/PROJECT-ID/IMAGE`
+And then all you need to do is: `docker push [TAGGED-IMAGE]`
+
+For more info, see: https://cloud.google.com/container-registry/docs/pushing-and-pulling
+
+### Gcloud auth
+
+`gcloud auth` is used to authorize access to Google Cloud platform. So far I've used:
+
+- gcloud auth login - Authorizes gcloud to access GCP with my google user credentials
+- gcloud auth activate-service-account - Authorize access to GCP with a service account. Useful for any CI/CD pipeline, i.e. pulling and pushing an image from GCR.
