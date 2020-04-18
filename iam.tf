@@ -19,6 +19,6 @@ resource "google_project_iam_member" "terraform_owner" {
 
 resource "google_project_iam_member" "circleci_deploy_registry" {
   project = "${google_project.samatar_dev.project_id}"
-  role    = "roles/storage.objectViewer"
+  role    = "roles/storage.admin"
   member  = "serviceAccount:${google_service_account.circleci_deploy.email}"
 }

@@ -61,7 +61,9 @@ Note - You probably want to persist after you run your (build) commands and gene
 Note - When starting a new service/project you'd most likely want to push your container to GCR and in order to do this, it's probably wise to create a SA specifically for that purpose.
 The role `storage.objectViewer` seems to be sufficient.
 
-Question - Is it necessary to create an entire project for the container registry?
+Question - Is it necessary to create an entire project for the container registry? Answer: The reason for this in our previous project was because of a separation of concerns.
+
+Here's a list of built-in environment variables: https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables
 
 ## Terraform
 
@@ -131,3 +133,8 @@ When trying to create a bucket to store my terraform state file, I got a 409 err
 
 Another thing about buckets is that even though the project field is optional, it will try and find the project_id from the provider.
 So it looks like it's best to set the project_id on that level as other resources may need it too.
+
+### Google container registry
+
+For push permissions (read and write) you need a role of `storage.admin`.
+For pull permissions (read only) you need a role of `storage.objectViewer`.
