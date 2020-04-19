@@ -170,3 +170,21 @@ For more info, see: https://cloud.google.com/container-registry/docs/pushing-and
 
 - gcloud auth login - Authorizes gcloud to access GCP with my google user credentials
 - gcloud auth activate-service-account - Authorize access to GCP with a service account. Useful for any CI/CD pipeline, i.e. pulling and pushing an image from GCR.
+
+# HTTPS
+
+An internet connection can be tapped just like a telephone line. Anyone else can _eavesdrop_ on your connection if they've got the right hard- and software, i.e. overhearing your conversation with the server.
+
+With HTTPS, the server holds a private key on the server and sends you a box along with a public key that can be used to lock the box the client is sending.
+The client's data is stored inside this "box" along with the client's key to open their data. Only the server can open the original box using their **private key** stored on the server.
+One key note to takeaway is that this only happens once, so after the initial which I guess is referred to as the handshake, no keys need to be sent across the connection anymore, since the server has got the client's key to open their box!
+
+Amazing explanation on the topic: https://www.youtube.com/watch?v=w0QbnxKRD0w
+
+Now to find out - what is this box? Aaah is it encrypted data?
+
+HTTPS also _impacts seo_ and _prevents you from using many new features, such as SW_.
+
+Note - look into DNS
+
+Note - Using GCS directly via CNAME redirects only allows HTTP traffic
