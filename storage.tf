@@ -17,7 +17,5 @@ resource "google_storage_bucket" "www_anime_samatar_dev" {
 
   location = "EU"
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  force_destroy = true
 }
