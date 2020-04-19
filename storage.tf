@@ -16,4 +16,8 @@ resource "google_storage_bucket" "www_anime_samatar_dev" {
   project = "${google_project.samatar_dev.project_id}"
 
   location = "EU"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
