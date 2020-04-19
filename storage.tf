@@ -17,5 +17,9 @@ resource "google_storage_bucket" "www_anime_samatar_dev" {
 
   location = "EU"
 
-  force_destroy = true
+  website {
+    main_page_suffix = "index.html"
+    not_found_page   = "index.html"
+  }
+
 }
