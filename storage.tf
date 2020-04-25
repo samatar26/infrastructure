@@ -10,8 +10,8 @@ resource "google_storage_bucket" "terraform_state" {
 
 }
 
-resource "google_storage_bucket" "www_anime_samatar_dev" {
-  name = "anime.samatar.dev"
+resource "google_storage_bucket" "design" {
+  name = "design.samatar.dev"
 
   project = "${google_project.samatar_dev.project_id}"
 
@@ -20,6 +20,10 @@ resource "google_storage_bucket" "www_anime_samatar_dev" {
   website {
     main_page_suffix = "index.html"
     not_found_page   = "index.html"
+  }
+
+  lifecycle {
+    prevent_destroy = true
   }
 
 }
