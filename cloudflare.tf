@@ -11,6 +11,7 @@ resource "cloudflare_record" "design" {
   name    = "design"
   value   = "c.storage.googleapis.com"
   type    = "CNAME"
+  proxied = true
 }
 
 
