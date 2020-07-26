@@ -29,6 +29,7 @@ resource "google_project_service" "s" {
       "serviceusage.googleapis.com",
       "storage-api.googleapis.com",
       "containerregistry.googleapis.com",
+      "compute.googleapis.com"
     ] : i => i
   }
 
