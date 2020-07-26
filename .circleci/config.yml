@@ -43,4 +43,5 @@ workflows:
           requires:
             - review_plan
           filters:
-            only: master
+            branches:
+              only: master
