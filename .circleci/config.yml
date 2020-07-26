@@ -41,7 +41,7 @@ workflows:
               ignore: master
       - apply:
           requires:
-            - review_plan
+            - plan
           filters:
             branches:
               only: master
