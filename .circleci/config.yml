@@ -36,6 +36,12 @@ workflows:
           requires:
             - plan
           type: approval
+          filters:
+            branches:
+              ignore: master
       - apply:
           requires:
             - review_plan
+          filters:
+            branches:
+              only: master
