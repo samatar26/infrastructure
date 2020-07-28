@@ -1,3 +1,7 @@
+provider "google" {
+  project = google_project.samatar_dev.project_id
+}
+
 variable "billing_account" {}
 
 locals {
