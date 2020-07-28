@@ -1,5 +1,7 @@
 provider "google" {
-  alias = "seed"
+  alias  = "seed"
+  region = "europe-west2-c"
+  zone   = "europe-west2"
 }
 
 provider "google" {
