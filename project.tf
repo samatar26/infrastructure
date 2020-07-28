@@ -1,12 +1,12 @@
 provider "google" {
-  alias  = "seed"
-  region = "europe-west2-c"
-  zone   = "europe-west2"
+  alias = "seed"
 }
 
 provider "google" {
   project = google_project.samatar_dev.project_id
+
 }
+
 
 variable "billing_account" {}
 
