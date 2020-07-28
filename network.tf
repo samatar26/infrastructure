@@ -31,6 +31,9 @@ resource "google_compute_firewall" "allow-internal" {
 }
 
 resource "google_compute_firewall" "allow-external" {
+  name    = "kubernetes-the-hard-way-allow-external"
+  network = google_compute_network.vpc_network.name
+
   allow {
     protocol = "tcp"
     ports    = ["22", "6443"] # default kubernetes api server port is on 6443 
