@@ -29,3 +29,14 @@ resource "google_compute_firewall" "allow-internal" {
 
   source_ranges = ["10.240.0.0/24", "10.200.0.0/16"] #question what is 10.200.0.0/16?
 }
+
+resource "google_compute_firewall" "allow-external" {
+  allow {
+    protocol = "tcp"
+    ports    = ["22", "6443"] # default kubernetes api server port is on 6443 
+  }
+
+  allow {
+    protocol = "icmp"
+  }
+}

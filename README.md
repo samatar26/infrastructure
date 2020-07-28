@@ -204,4 +204,6 @@ See `network.tf` for how we've set up the network to host our Kubernetes cluster
 
 Port 22 is widely used for SSH.
 
+Kubernetes default api server port is on 6443.
+
 - Note - Subnets? - A smaller network inside a large network.
