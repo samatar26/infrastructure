@@ -7,11 +7,6 @@ provider "google" {
 
 }
 
-provider "google" {
-  alias  = "europe-west-2"
-  region = "europe-west2-c"
-  zone   = "europe-west2"
-}
 
 variable "billing_account" {}
 
