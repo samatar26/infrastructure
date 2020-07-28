@@ -7,7 +7,7 @@ resource "google_compute_subnetwork" "kubernetes-the-hard-way-subnet" {
   name          = "kubernetes-cluster-subnet"
   network       = google_compute_network.vpc_network.id
   ip_cidr_range = "10.240.0.0/24" # allows us to host up to 254 compute instances
-  region        = "europe-west3"
+  region        = "europe-west3"  # Question - the region/zone is not being picked up from the provider?
 }
 
 resource "google_compute_firewall" "allow-internal" {
