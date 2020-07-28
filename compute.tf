@@ -11,7 +11,8 @@ resource "google_compute_instance" "controller" {
   count = 3
 
   can_ip_forward = true
-
+  name           = "kubernetes-controller-${count.index}"
+  zone           = "europe-west3-a"
 
   boot_disk {
     initialize_params {
