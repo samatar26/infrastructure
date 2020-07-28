@@ -1,4 +1,8 @@
 provider "google" {
+  alias = "seed"
+}
+
+provider "google" {
   project = google_project.samatar_dev.project_id
 }
 
@@ -14,6 +18,8 @@ resource "random_id" "project_id" {
 }
 
 resource "google_project" "samatar_dev" {
+  provider = google.seed
+
   name       = local.project_name
   project_id = random_id.project_id.hex
 
