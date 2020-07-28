@@ -209,3 +209,21 @@ Kubernetes default api server port is on 6443.
 0.0.0.0/0 represents all poosible IP addresses, hence why it's used for the source range in our firewall rule allowing external communication with the Kubernetes api/cluster.
 
 - Note - Subnets? - A smaller network inside a large network.
+
+### Questions I should try and answer:
+
+#### Terraform
+
+When adding a provider, why does it have to be in two separate steps?:
+
+```
+provider "google" {
+  alias = "seed"
+}
+
+provider "google" {
+  project = google_project.samatar_dev.project_id
+}
+```
+
+Does it matter that I did it after creating the project?
