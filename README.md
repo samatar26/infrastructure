@@ -206,4 +206,6 @@ Port 22 is widely used for SSH.
 
 Kubernetes default api server port is on 6443.
 
+0.0.0.0/0 represents all poosible IP addresses, hence why it's used for the source range in our firewall rule allowing external communication with the Kubernetes api/cluster.
+
 - Note - Subnets? - A smaller network inside a large network.
