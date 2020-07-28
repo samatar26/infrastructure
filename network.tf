@@ -1,5 +1,4 @@
 resource "google_compute_network" "vpc_network" {
-  project                 = "${google_project.samatar_dev.project_id}"
   name                    = "kubernetes-the-hard-way"
   auto_create_subnetworks = false # We want to create a custom network so we can set a large enough IP address range, to assign a private IP address to each node in the Kubernetes cluster.
 }

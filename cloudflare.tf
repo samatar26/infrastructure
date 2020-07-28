@@ -7,7 +7,7 @@ resource "cloudflare_zone" "samatar" {
 }
 
 resource "cloudflare_record" "design" {
-  zone_id = "${cloudflare_zone.samatar.id}"
+  zone_id = cloudflare_zone.samatar.id
   name    = "design"
   value   = "c.storage.googleapis.com"
   type    = "CNAME"

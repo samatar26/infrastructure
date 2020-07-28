@@ -25,11 +25,11 @@ resource "google_project" "samatar_dev" {
   name       = local.project_name
   project_id = random_id.project_id.hex
 
-  billing_account = "${var.billing_account}"
+  billing_account = var.billing_account
 }
 
 resource "google_project_service" "s" {
-  project = "${google_project.samatar_dev.project_id}"
+  project = google_project.samatar_dev.project_id
 
   service = each.key
 
