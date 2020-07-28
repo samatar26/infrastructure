@@ -134,6 +134,10 @@ When trying to create a bucket to store my terraform state file, I got a 409 err
 Another thing about buckets is that even though the project field is optional, it will try and find the project_id from the provider.
 So it looks like it's best to set the project_id on that level as other resources may need it too.
 
+## Meta commands
+
+`count` is useful to create multiple copies of a resource, and you have access to `count.index`, which is useful to differentiate unique fields.
+
 ### Google container registry
 
 In order to push images to GCR, there's several steps required:
