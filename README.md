@@ -202,4 +202,6 @@ Google cloud provides a **Virtual Private Cloud** network and it's literally a _
 
 See `network.tf` for how we've set up the network to host our Kubernetes cluster.
 
+Port 22 is widely used for SSH.
+
 - Note - Subnets? - A smaller network inside a large network.
