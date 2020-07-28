@@ -188,3 +188,24 @@ HTTPS also _impacts seo_ and _prevents you from using many new features, such as
 Note - look into DNS
 
 Note - Using GCS directly via CNAME redirects only allows HTTP traffic
+
+## Kubernetes
+
+Notes following Kubernetes the hard way
+
+- Kubernetes requires a set of machines to host the Kubernetes control plane and the worker nodes (where the containers are ultimately run).
+- The Kubernetes networking model assumes a flat network in which each container and node can communicate with eachother. **Where this is not required you can set _network policies_**.
+
+### Setting up the network
+
+Google cloud provides a **Virtual Private Cloud** network and it's literally a _virtual_ version of a physical network.
+
+See `network.tf` for how we've set up the network to host our Kubernetes cluster.
+
+Port 22 is widely used for SSH.
+
+Kubernetes default api server port is on 6443.
+
+0.0.0.0/0 represents all poosible IP addresses, hence why it's used for the source range in our firewall rule allowing external communication with the Kubernetes api/cluster.
+
+- Note - Subnets? - A smaller network inside a large network.
