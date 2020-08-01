@@ -6,7 +6,6 @@ resource "google_compute_address" "kubernetes_the_hard_way" {
 
 
 # Create 3 compute instances for the control plane
-
 resource "google_compute_instance" "controller" {
   count = 3
 
@@ -34,4 +33,29 @@ resource "google_compute_instance" "controller" {
 
   #Question haven't defined scopes, will need to see if needed later on:
   # compute-rw,storage-ro,service-management,service-control,logging-write,monitoring
+}
+
+
+# 3 compute instances to host the Kubernetes worker nodes
+resource "google_compute_instance" "worker" {
+  count = 3
+
+  boot_disk {
+    initialize_params {
+      size  = 200
+      image = "ubuntu-2004-lts"
+    }
+  }
+
+  network_interface {
+    subnetwork = "kubernetes-cluster-subnet"
+    network_ip = "10.240.0.2${i}"
+  }
+
+  metadata = {
+    "pod-cidr" = "10.200.${i}.0/24" # pod subnet allocation will used to configure container networking at a later stage
+  }
+
+  machine_type = "e2-standard-2"
+  tags         = ["kubernetes-the-hard-way", "worker"]
 }
