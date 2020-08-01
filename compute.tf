@@ -40,6 +40,9 @@ resource "google_compute_instance" "controller" {
 resource "google_compute_instance" "worker" {
   count = 3
 
+  name = "kubernetes-worker-${count.index}"
+
+
   boot_disk {
     initialize_params {
       size  = 200
