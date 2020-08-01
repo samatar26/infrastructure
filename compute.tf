@@ -49,11 +49,11 @@ resource "google_compute_instance" "worker" {
 
   network_interface {
     subnetwork = "kubernetes-cluster-subnet"
-    network_ip = "10.240.0.2${i}"
+    network_ip = "10.240.0.2${count.index}"
   }
 
   metadata = {
-    "pod-cidr" = "10.200.${i}.0/24" # pod subnet allocation will used to configure container networking at a later stage
+    "pod-cidr" = "10.200.${count.index}.0/24" # pod subnet allocation will used to configure container networking at a later stage
   }
 
   machine_type = "e2-standard-2"
