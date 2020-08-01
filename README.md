@@ -214,6 +214,8 @@ Kubernetes default api server port is on 6443.
 
 - Note - Subnets? - A smaller network inside a large network.
 
+- Set up three compute instances to host the controle plane. It's costing £6 a day!
+
 ### Questions I should try and answer:
 
 #### Terraform
