@@ -41,6 +41,7 @@ resource "google_compute_instance" "worker" {
   count = 3
 
   name = "kubernetes-worker-${count.index}"
+  zone = "europe-west3-a"
 
 
   boot_disk {
