@@ -16,7 +16,7 @@ resource "google_compute_instance" "controller" {
   boot_disk {
     initialize_params {
       size  = 200
-      image = "ubuntu-2004-lts"
+      image = "ubuntu-os-cloud/ubuntu-2004-lts" #project/family
 
     }
   }
@@ -47,7 +47,7 @@ resource "google_compute_instance" "worker" {
   boot_disk {
     initialize_params {
       size  = 200
-      image = "ubuntu-2004-lts"
+      image = "ubuntu-os-cloud/ubuntu-2004-lts" #project/family
     }
   }
 
