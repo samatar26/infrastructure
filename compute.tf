@@ -17,6 +17,7 @@ resource "google_compute_instance" "controller" {
     initialize_params {
       size  = 200
       image = "ubuntu-os-cloud/ubuntu-2004-lts" #project/family
+      #Question: change to image attribute caused no change in terraform plan.
 
     }
   }
@@ -29,7 +30,7 @@ resource "google_compute_instance" "controller" {
 
 
   machine_type = "e2-standard-2"
-  tags         = ["kubernetes-the-hard-way", "controller"]
+  tags         = ["kubernetes-the-hard-way", "controller", "test"]
 
   #Question haven't defined scopes, will need to see if needed later on:
   # compute-rw,storage-ro,service-management,service-control,logging-write,monitoring
