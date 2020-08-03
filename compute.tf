@@ -16,7 +16,7 @@ resource "google_compute_instance" "controller" {
   boot_disk {
     initialize_params {
       size  = 200
-      image = "ubuntu-2004-lts"
+      image = "ubuntu-os-cloud/ubuntu-2004-lts" #project/family
 
     }
   }
@@ -24,6 +24,10 @@ resource "google_compute_instance" "controller" {
   network_interface {
     subnetwork = "kubernetes-cluster-subnet"
     network_ip = "10.240.0.1${count.index}"
+
+    access_config {
+
+    }
   }
 
 
@@ -47,13 +51,17 @@ resource "google_compute_instance" "worker" {
   boot_disk {
     initialize_params {
       size  = 200
-      image = "ubuntu-2004-lts"
+      image = "ubuntu-os-cloud/ubuntu-2004-lts" #project/family
     }
   }
 
   network_interface {
     subnetwork = "kubernetes-cluster-subnet"
     network_ip = "10.240.0.2${count.index}"
+
+    access_config { # Gives an epphemeral ip to the instance (Ephemeral meaning for the lifetime of the instance, and a new one is generated if recreated/rebooted)
+
+    }
   }
 
   metadata = {
