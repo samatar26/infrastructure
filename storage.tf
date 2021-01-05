@@ -1,7 +1,7 @@
 resource "google_storage_bucket" "terraform_state" {
   name = "samatar-tf-state"
 
-  location = "EU"
+  location = "US-EAST1" # Free
 
   versioning {
     enabled = true
@@ -9,10 +9,10 @@ resource "google_storage_bucket" "terraform_state" {
 
 }
 
-resource "google_storage_bucket" "design" {
-  name = "design.samatar.dev"
+resource "google_storage_bucket" "marhaban" {
+  name = "marhaban.samatar.dev"
 
-  location = "EU"
+  location = "US-EAST1"
 
   website {
     main_page_suffix = "index.html"
