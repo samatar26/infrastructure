@@ -1,7 +1,7 @@
 jobs:
   plan:
     docker:
-      - image: hashicorp/terraform
+      - image: hashicorp/terraform:0.12.29
     steps:
       - checkout
       - run:

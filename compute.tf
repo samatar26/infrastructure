@@ -1,73 +1,73 @@
-resource "google_compute_address" "kubernetes_the_hard_way" {
-  name = "kubernetes-public-api-server"
+# resource "google_compute_address" "kubernetes_the_hard_way" {
+#   name = "kubernetes-public-api-server"
 
-  region = "europe-west3"
-}
-
-
-# Create 3 compute instances for the control plane
-resource "google_compute_instance" "controller" {
-  count = 3
-
-  can_ip_forward = true
-  name           = "kubernetes-controller-${count.index}"
-  zone           = "europe-west3-a"
-
-  boot_disk {
-    initialize_params {
-      size  = 200
-      image = "ubuntu-os-cloud/ubuntu-2004-lts" #project/family
-
-    }
-  }
-
-  network_interface {
-    subnetwork = "kubernetes-cluster-subnet"
-    network_ip = "10.240.0.1${count.index}"
-
-    access_config {
-
-    }
-  }
+#   region = "europe-west3"
+# }
 
 
+# # Create 3 compute instances for the control plane
+# resource "google_compute_instance" "controller" {
+#   count = 3
 
-  machine_type = "e2-standard-2"
-  tags         = ["kubernetes-the-hard-way", "controller"]
+#   can_ip_forward = true
+#   name           = "kubernetes-controller-${count.index}"
+#   zone           = "europe-west3-a"
 
-  #Question haven't defined scopes, will need to see if needed later on:
-  # compute-rw,storage-ro,service-management,service-control,logging-write,monitoring
-}
+#   boot_disk {
+#     initialize_params {
+#       size  = 200
+#       image = "ubuntu-os-cloud/ubuntu-2004-lts" #project/family
+
+#     }
+#   }
+
+#   network_interface {
+#     subnetwork = "kubernetes-cluster-subnet"
+#     network_ip = "10.240.0.1${count.index}"
+
+#     access_config {
+
+#     }
+#   }
 
 
-# 3 compute instances to host the Kubernetes worker nodes
-resource "google_compute_instance" "worker" {
-  count = 3
 
-  name = "kubernetes-worker-${count.index}"
-  zone = "europe-west3-a"
+#   machine_type = "e2-standard-2"
+#   tags         = ["kubernetes-the-hard-way", "controller"]
+
+#   #Question haven't defined scopes, will need to see if needed later on:
+#   # compute-rw,storage-ro,service-management,service-control,logging-write,monitoring
+# }
 
 
-  boot_disk {
-    initialize_params {
-      size  = 200
-      image = "ubuntu-os-cloud/ubuntu-2004-lts" #project/family
-    }
-  }
+# # 3 compute instances to host the Kubernetes worker nodes
+# resource "google_compute_instance" "worker" {
+#   count = 3
 
-  network_interface {
-    subnetwork = "kubernetes-cluster-subnet"
-    network_ip = "10.240.0.2${count.index}"
+#   name = "kubernetes-worker-${count.index}"
+#   zone = "europe-west3-a"
 
-    access_config { # Gives an epphemeral ip to the instance (Ephemeral meaning for the lifetime of the instance, and a new one is generated if recreated/rebooted)
 
-    }
-  }
+#   boot_disk {
+#     initialize_params {
+#       size  = 200
+#       image = "ubuntu-os-cloud/ubuntu-2004-lts" #project/family
+#     }
+#   }
 
-  metadata = {
-    "pod-cidr" = "10.200.${count.index}.0/24" # pod subnet allocation will used to configure container networking at a later stage
-  }
+#   network_interface {
+#     subnetwork = "kubernetes-cluster-subnet"
+#     network_ip = "10.240.0.2${count.index}"
 
-  machine_type = "e2-standard-2"
-  tags         = ["kubernetes-the-hard-way", "worker"]
-}
+#     access_config { # Gives an epphemeral ip to the instance (Ephemeral meaning for the lifetime of the instance, and a new one is generated if recreated/rebooted)
+
+#     }
+#   }
+
+#   metadata = {
+#     "pod-cidr" = "10.200.${count.index}.0/24" # pod subnet allocation will used to configure container networking at a later stage
+#   }
+
+#   machine_type = "e2-standard-2"
+#   tags         = ["kubernetes-the-hard-way", "worker"]
+# }

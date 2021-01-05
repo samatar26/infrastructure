@@ -3,3 +3,4 @@ terraform {
     bucket = "samatar-tf-state"
   }
 }
+

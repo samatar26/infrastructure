@@ -2,13 +2,15 @@ provider "cloudflare" {
   version = "~> 2.0"
 }
 
+
+
 resource "cloudflare_zone" "samatar" {
   zone = "samatar.dev"
 }
 
-resource "cloudflare_record" "design" {
+resource "cloudflare_record" "marhaban" {
   zone_id = cloudflare_zone.samatar.id
-  name    = "design"
+  name    = "marhaban"
   value   = "c.storage.googleapis.com"
   type    = "CNAME"
   proxied = true
