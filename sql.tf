@@ -15,6 +15,7 @@ resource "google_sql_database" "anime" {
   instance = google_sql_database_instance.anime.name
 }
 
+variable "anime_db_password" {}
 
 resource "google_sql_user" "anime" {
   name     = "anime"
