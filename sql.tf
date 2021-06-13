@@ -9,3 +9,14 @@ resource "google_sql_database_instance" "anime" {
   }
 
 }
+
+resource "google_sql_database" "anime" {
+  name     = "anime"
+  instance = google_sql_database_instance.anime.name
+}
+
+
+module "google_sql_user_anime" {
+  name     = "anime"
+  instance = google_sql_database_instance.anime.name
+}
