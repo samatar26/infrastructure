@@ -16,7 +16,7 @@ resource "google_sql_database" "anime" {
 }
 
 
-module "google_sql_user_anime" {
+resource "google_sql_user" "anime" {
   name     = "anime"
   instance = google_sql_database_instance.anime.name
 }
