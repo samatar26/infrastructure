@@ -19,4 +19,5 @@ resource "google_sql_database" "anime" {
 resource "google_sql_user" "anime" {
   name     = "anime"
   instance = google_sql_database_instance.anime.name
+  password = var.anime_db_password
 }
