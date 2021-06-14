@@ -25,7 +25,7 @@ resource "google_storage_bucket" "marhaban" {
 
 }
 
-resource "google_storage_bucket" "pachama" {
+resource "google_storage_bucket" "pachama_samatar" {
   name = "pachama.samatar.dev"
 
   location = "US-EAST1"
