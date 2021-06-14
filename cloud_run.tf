@@ -28,3 +28,26 @@ resource "google_cloud_run_service" "anime-api" {
 
 
 }
+
+resource "google_cloud_run_service" "forests" {
+  name     = "forests"
+  location = "europe-west3"
+
+  template {
+    spec {
+      containers {
+        image = "eu.gcr.io/${google_project.samatar_dev.project_id}/forests"
+        ports {
+          container_port = 8000
+        }
+      }
+
+    }
+  }
+
+  traffic {
+    percent         = 100
+    latest_revision = true
+  }
+
+}
