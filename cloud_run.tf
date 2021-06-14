@@ -5,7 +5,10 @@ resource "google_cloud_run_service" "anime-api" {
   template {
     spec {
       containers {
-        image = "eu.gcr.io/samatar-dev-43f2d25b/anime-api"
+        image = "eu.gcr.io/${google_project.samatar_dev.project_id}/anime-api"
+        ports {
+          container_port = 8000
+        }
       }
 
       service_account_name = google_service_account.anime_api_cloud_run.email
@@ -22,4 +25,6 @@ resource "google_cloud_run_service" "anime-api" {
     percent         = 100
     latest_revision = true
   }
+
+
 }
