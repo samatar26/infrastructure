@@ -9,7 +9,7 @@ resource "google_service_account" "circleci_deploy" {
 }
 
 resource "google_service_account" "forests_cloud_run" {
-  account_id   = "anime-api"
+  account_id   = "forests"
   display_name = "Forests Cloud run SA"
 }
 
