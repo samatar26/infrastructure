@@ -24,3 +24,19 @@ resource "google_storage_bucket" "marhaban" {
   }
 
 }
+
+resource "google_storage_bucket" "pachama" {
+  name = "pachama.samatar.dev"
+
+  location = "US-EAST1"
+
+  website {
+    main_page_suffix = "index.html"
+    not_found_page   = "index.html"
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
+
+}

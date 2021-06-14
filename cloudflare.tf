@@ -10,4 +10,12 @@ resource "cloudflare_record" "marhaban" {
   proxied = true
 }
 
+resource "cloudflare_record" "pachama" {
+  zone_id = cloudflare_zone.samatar.id
+  name    = "pachama"
+  value   = "c.storage.googleapis.com"
+  type    = "CNAME"
+  proxied = true
+}
+
 
