@@ -8,9 +8,9 @@ resource "google_service_account" "circleci_deploy" {
   display_name = "CircleCI Deploy SA"
 }
 
-resource "google_service_account" "anime_api_cloud_run" {
+resource "google_service_account" "forests_cloud_run" {
   account_id   = "anime-api"
-  display_name = "Cloud run anime api SA"
+  display_name = "Forests Cloud run SA"
 }
 
 resource "google_project_iam_member" "terraform_owner" {
@@ -27,5 +27,5 @@ resource "google_project_iam_member" "circleci_deploy_registry" {
 
 resource "google_project_iam_member" "cloud_sql_client" {
   role   = "roles/cloudsql.client"
-  member = "serviceAccount:${google_service_account.anime_api_cloud_run.email}"
+  member = "serviceAccount:${google_service_account.forests_cloud_run.email}"
 }
