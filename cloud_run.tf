@@ -16,7 +16,7 @@ resource "google_cloud_run_service" "anime-api" {
 
     metadata {
       annotations = {
-        "run.googleapis.com/cloudsql-instances" = google_sql_database_instance.anime.name
+        "run.googleapis.com/cloudsql-instances" = google_sql_database_instance.anime.connection_name
       }
     }
   }
